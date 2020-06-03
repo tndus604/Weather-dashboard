@@ -25,17 +25,67 @@
           <input id="searchCity">
           <button id="searchBtn" onclick="fetchWeather()">Search</button>
       </div>
-      <div class="col-sm-12 col-md-8 col-lg-9">
-          <div class="city"></div>
-          <div class="temp"></div>
-          <div class="humidity"></div>
-          <div class="wind"></div>
-          <div class="latitude"></div>
-          <div class="longitude"></div>
-          <div class="uvIndex"></div>
-      </div>
+
+      <div class="col-sm-12 col-md-8 col-lg-9" style="display: none;" id="rightRow">
+        <div class="card">
+          <div class="card-body">
+            <div class="city"></div>
+            <div class="temp"></div>
+            <div class="humidity"></div>
+            <div class="wind"></div>
+            <div class="latitude"></div>
+            <div class="longitude"></div>
+            <div class="uvIndex"></div>          
+          </div>
+        </div>
+
+        <h4> 5-day Forecast:</h4>
+        <div class="card-deck">
+          <div class="card">
+            <div class="card-body">
+              <div class="fiveDate1"></div>
+              <div class="fiveIcon1"></div>
+              <div class="fiveTemp1"></div>
+              <div class="fiveHumidity1"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="fiveDate2"></div>
+              <div class="fiveIcon2"></div>
+              <div class="fiveTemp2"></div>
+              <div class="fiveHumidity2"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="fiveDate3"></div>
+              <div class="fiveIcon3"></div>
+              <div class="fiveTemp3"></div>
+              <div class="fiveHumidity3"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="fiveDate4"></div>
+              <div class="fiveIcon4"></div>
+              <div class="fiveTemp4"></div>
+              <div class="fiveHumidity4"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="fiveDate5"></div>
+              <div class="fiveIcon5"></div>
+              <div class="fiveTemp5"></div>
+              <div class="fiveHumidity5"></div>
+            </div>
+          </div>
+          </div>
+        </div>
     </div>
   </div>
+
 </body>
 
 </html>
