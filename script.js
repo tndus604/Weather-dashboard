@@ -10,7 +10,7 @@ async function fetchWeather () {
   }
 
 
-  function displayWeather( weatherData ){
+function displayWeather( weatherData ){
     myWeather = weatherData;
     console.log( `[displayWeather]`, weatherData );
     var tempKelvin = weatherData.main.temp;
@@ -33,14 +33,20 @@ async function fetchWeather () {
         $('.city').append(cityImg);     
     document.querySelector('.latitude').textContent = "Latitude: " + latCity;
     document.querySelector('.longitude').textContent = "Longitude: " + lonCity;
+    fetchUVIndex(latCity, lonCity);
   }
 
-  // function fetchUVIndex (latCity, lonCity) {
-  //   var uvIndexURL = "http://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + latCity +"&lon=" + lonCity;
+function fetchUVIndex (latCity, lonCity) {
+    var APIKey = "166a433c57516f51dfab1f7edaed8413";
+    var uvIndexURL = "http://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + latCity +"&lon=" + lonCity;
 
-  //   $.ajax({
-  //     url: uvIndexURL,
-  //     method:"GET"
-  //   }).then (displayWeather); {
-  //     document.querySelector('.uvIndex').textContent = repsonse.value;
-  //   }
+    $.ajax({
+      url: uvIndexURL,
+      method:"GET"
+    }).then (displayUVIndex);
+}
+
+function displayUVIndex (response) {
+    console.log ( `[displayUVIndex]`, response )
+    document.querySelector('.uvIndex').textContent = "UV Index: " + response.value;
+}
