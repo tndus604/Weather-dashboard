@@ -19,21 +19,17 @@ $(document).ready(function () {
                 var lat = data.coord.lat;
                 var lon = data.coord.lon;
                 var iconObj = data.weather[0].icon;
+                var tempFar = data.main.temp;
+                var tempCel = (tempFar - 32) * (5/9);
 
 
                 $('#location').text(data.name);
                 $('#dateNow').text(date);
                 $('#con').text('Current condition: ' + data.weather[0].description);
-                $('#temp').text('Now: ' + (parseInt(data.main.temp).toFixed(0)) + ' ' + String.fromCharCode(176) + 'F');
+                $('#temp').text('Now: ' + (parseInt(tempCel).toFixed(0)) + ' ' + '°C');
                 $('#humidity').text('Humidity: ' + data.main.humidity + '%');
                 $('#windSpeed').text('Wind Speed: ' + data.wind.speed + ' MPH');
-                $('#like').text('Feels like: ' + (parseInt(data.main.feels_like).toFixed(0) + ' ' + String.fromCharCode(176) + 'F'));
-                $('#low').text('Lows for today : ' + (parseInt(data.main.temp_min).toFixed(0) + ' ' + String.fromCharCode(176) + 'F'));
-                $('#high').text('Highs for today: ' + (parseInt(data.main.temp_max).toFixed(0) + ' ' + String.fromCharCode(176) + 'F'));
-                $('#rise').text('Sunrise: ' + unix_Time(data.sys.sunrise));
-                $('#set').text('Sunset: ' + unix_Time(data.sys.sunset));
-                $('#pressure').text('Pressure: ' + data.main.pressure + ' ' + 'Pa');
-                console.log(unix_Time(data.sys.sunrise));
+                $('#like').text('Feels like: ' + (parseInt(data.main.feels_like).toFixed(0) + ' ' + '°C'));
                 updateUvIndex(lat, lon);
 
                 var iconURL = "https://openweathermap.org/img/w/" + iconObj + ".png";
@@ -98,20 +94,18 @@ $(document).ready(function () {
                 var lat = data.coord.lat;
                 var lon = data.coord.lon;
                 var iconObj = data.weather[0].icon;
+                var tempFar = data.main.temp;
+                var tempCel = (tempFar - 32) * (5/9);
+                var tempFarFeels = data.main.feels_like;
+                var tempCelFeels = (tempFarFeels - 32) * (5/9);
 
                 $('#location').text(data.name);
                 $('#dateNow').text(date);
                 $('#con').text('Current condition: ' + data.weather[0].description);
-                $('#temp').text('Temperature: ' + (parseInt(data.main.temp).toFixed(0)) + ' ' + String.fromCharCode(176) + 'F');
+                $('#temp').text('Temperature: ' + (parseInt(tempCel).toFixed(0)) + ' ' + '°C');
                 $('#humidity').text('Humidity: ' + data.main.humidity + '%');
                 $('#windSpeed').text('Wind Speed: ' + data.wind.speed + ' MPH');
-                $('#like').text('Feels like: ' + (parseInt(data.main.feels_like).toFixed(1) + ' ' + String.fromCharCode(176) + 'F'));
-                $('#low').text('Lows for today : ' + (parseInt(data.main.temp_min).toFixed(1) + ' ' + String.fromCharCode(176) + 'F'));
-                $('#high').text('Highs for today: ' + (parseInt(data.main.temp_max).toFixed(1) + ' ' + String.fromCharCode(176) + 'F'));
-                $('#rise').text('Sunrise: ' + unix_Time(data.sys.sunrise));
-                $('#set').text('Sunset: ' + unix_Time(data.sys.sunset));
-                $('#pressure').text('Pressure: ' + data.main.pressure + ' ' + 'Pa');
-                console.log(unix_Time(data.sys.sunrise));
+                $('#like').text('Feels like: ' + (parseInt(tempCelFeels).toFixed(1) + ' ' + '°C'));
                 updateUvIndex(lat, lon);
 
                 var iconURL = "https://openweathermap.org/img/w/" + iconObj + ".png";
@@ -185,10 +179,12 @@ $(document).ready(function () {
                     var futureDate = new Date();
                     futureDate.setDate(today.getDate() + count);
                     var forecast = moment(futureDate).format("MM/D");
+                    var tempFar5 = response.list[x].main.humidity;
+                    var tempCel5 = (tempFar5 - 32) * (5/9);
                     dayDate.text(forecast);
                     dayImg.attr("src", iconURL);
                     desc.text(response.list[x].weather[0].description);
-                    tempForecast.text("Temp.: " + parseInt(response.list[x].main.temp).toFixed(1) + " °F ");
+                    tempForecast.text("Temp.: " + parseInt(tempCel5).toFixed(1) + " °C");
 
                     humidityFor.text("Humidity: " + response.list[x].main.humidity + "% ");
                     console.log(response);
