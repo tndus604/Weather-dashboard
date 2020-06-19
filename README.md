@@ -1,6 +1,6 @@
 # homework06
 
-My deployed URL :  https://tndus604.github.io/homework06/
+My deployed URL :  https://tndus604.github.io/Weather-dashboard/
 ![weather dashboard screenshot](weatherDashboard.png)
 
 # 06 Server-Side APIs: Weather Dashboard
