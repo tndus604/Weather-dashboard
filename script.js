@@ -1,7 +1,24 @@
 $(document).ready(function () {
 
     var apiKey = "166a433c57516f51dfab1f7edaed8413";
+    var latt;
+    var longg;
     var cityNames = [];
+
+    var question = confirm('Do you want to track your location?');
+    if (question) {
+        getLocation();
+    } else {
+        $()
+    }
+
+    function getLocation() {
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(geoSuccess)
+        } else {
+            alert("Geolocation is not supported by this browser.")
+        }
+    }
 
 
     function geoSuccess(position) {
