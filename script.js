@@ -8,8 +8,6 @@ $(document).ready(function () {
     var question = confirm('Do you want to track your location?');
     if (question) {
         getLocation();
-    } else {
-        $()
     }
 
     function getLocation() {
@@ -38,6 +36,8 @@ $(document).ready(function () {
                 var iconObj = data.weather[0].icon;
                 var tempFar = data.main.temp;
                 var tempCel = (tempFar - 32) * (5/9);
+                var tempFeelFar = data.main.feels_like;
+                var tempFeelCel = (tempFeelFar - 32) * (5/9);
 
 
                 $('#location').text(data.name);
@@ -46,8 +46,8 @@ $(document).ready(function () {
                 $('#temp').text('Now: ' + (parseInt(tempCel).toFixed(0)) + ' ' + '°C');
                 $('#humidity').text('Humidity: ' + data.main.humidity + '%');
                 $('#windSpeed').text('Wind Speed: ' + data.wind.speed + ' MPH');
-                $('#like').text('Feels like: ' + (parseInt(data.main.feels_like).toFixed(0) + ' ' + '°C'));
-                updateUvIndex(lat, lon);
+                $('#like').text('Feels like: ' + (parseInt(tempFeelCel).toFixed(0) + ' ' + '°C'));
+                updateUvIndex(latt, longg);
 
                 var iconURL = "https://openweathermap.org/img/w/" + iconObj + ".png";
                 var cityImg = $("<img>");
@@ -108,8 +108,8 @@ $(document).ready(function () {
             success: function (data) {
                 var today = new Date(Date.now());
                 var date = today.toDateString();
-                var lat = data.coord.lat;
-                var lon = data.coord.lon;
+                var latt = data.coord.lat;
+                var longg = data.coord.lon;
                 var iconObj = data.weather[0].icon;
                 var tempFar = data.main.temp;
                 var tempCel = (tempFar - 32) * (5/9);
@@ -123,7 +123,7 @@ $(document).ready(function () {
                 $('#humidity').text('Humidity: ' + data.main.humidity + '%');
                 $('#windSpeed').text('Wind Speed: ' + data.wind.speed + ' MPH');
                 $('#like').text('Feels like: ' + (parseInt(tempCelFeels).toFixed(1) + ' ' + '°C'));
-                updateUvIndex(lat, lon);
+                updateUvIndex(latt, longg);
 
                 var iconURL = "https://openweathermap.org/img/w/" + iconObj + ".png";
                 var cityImg = $("<img>");
@@ -136,22 +136,22 @@ $(document).ready(function () {
     }
 
     function updateUvIndex(latt, longg) {
-        var value;
+        // var value;
         $.ajax({
-            url: 'https://api.openweathermap.org/data/2.5/uvi?&appid=' + apiKey + '&lat=' + latt + '&lon=' + longg,
+            url: 'http://api.openweathermap.org/data/2.5/uvi?&appid=' + apiKey + '&lat=' + latt + '&lon=' + longg,
             method: "GET"
         }).then(function (response) {
             $('#uV').text('UV Index: ' + response.value);
             if (response.value < 3) {
-                $('#uV').css("color", "green");
+                $('#uV').css("background-color", "green");
             } else if (response.value < 6) {
-                $('#uV').css("color", "yellow");
+                $('#uV').css("background-color", "yellow");
             } else if (response.value < 8) {
-                $('#uV').css("color", "tangerine");
+                $('#uV').css("background-color", "tangerine");
             } else if (response.value < 11) {
-                $('#uV').css("color", "red");
+                $('#uV').css("background-color", "red");
             } else {
-                $('#uV').css("color", "purple");
+                $('#uV').css("background-color", "purple");
             }
 
         });
@@ -179,7 +179,7 @@ $(document).ready(function () {
             box.empty();
             count = 1;
 
-            for (var x = 0; x < response.list.length; ++x) {
+            for (var x = 0; x < response.list.length; x++ ) {
                 if (response.list[x].dt_txt.includes('00:00:00')) {
                     iconObj = response.list[x].weather[0].icon;
                     var daysForecast = $('<div class="col-sm-12 col-md-auto col-lg-0" id="days">');
@@ -211,7 +211,7 @@ $(document).ready(function () {
 
                     //daysForecast.attr("class", "days");
                     box.append(daysForecast);
-                    ++count;
+                    count++;
                 }
             }
         });
