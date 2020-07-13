@@ -136,26 +136,23 @@ $(document).ready(function () {
     }
 
     function updateUvIndex(latt, longg) {
-        // var value;
         $.ajax({
-            url: 'http://api.openweathermap.org/data/2.5/uvi?&appid=' + apiKey + '&lat=' + latt + '&lon=' + longg,
+            url: 'https://api.openweathermap.org/data/2.5/uvi?&appid=' + apiKey + '&lat=' + latt + '&lon=' + longg,
             method: "GET"
         }).then(function (response) {
             $('#uV').text('UV Index: ' + response.value);
             if (response.value < 3) {
-                $('#uV').css("background-color", "green");
+                $('#uV').css("color", "green");
             } else if (response.value < 6) {
-                $('#uV').css("background-color", "yellow");
+                $('#uV').css("color", "yellow");
             } else if (response.value < 8) {
-                $('#uV').css("background-color", "tangerine");
+                $('#uV').css("color", "tangerine");
             } else if (response.value < 11) {
-                $('#uV').css("background-color", "red");
+                $('#uV').css("color", "red");
             } else {
-                $('#uV').css("background-color", "purple");
-            }
-
-        });
-
+                $('#uV').css("color", "purple");
+            } 
+        })
     }
 
     function fiveDayFor(userCity) {
