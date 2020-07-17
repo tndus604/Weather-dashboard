@@ -33,6 +33,7 @@ function geoSuccess(position) {
             var tempCelFeels = (tempFarFeels - 32) * (5/9);
             var latt= data.coord.lat;
             var longg = data.coord.lon;
+            var pressure = (data.main.pressure/10)
 
             var currentWeather = document.querySelector('#currentWeather')
 
@@ -44,6 +45,7 @@ function geoSuccess(position) {
                 <h6>Feels like: ${(parseInt(tempCelFeels).toFixed(0))} °C</h6>
                 <h6>Humidity: ${data.main.humidity} %</h6>
                 <h6>Wind Speed: ${data.wind.speed} MPH</h6>
+                <h6>Pressue: ${pressure} kPa</h6>
             `
             updateUvIndex(latt, longg);
             fiveDayFor(data.name);
@@ -85,6 +87,7 @@ function currentCity(city) {
             var tempCelFeels = (tempFarFeels - 32) * (5/9);
             var latt= data.coord.lat;
             var longg = data.coord.lon;
+            var pressure = (data.main.pressure/10)
 
             var currentWeather = document.querySelector('#currentWeather')
 
@@ -96,6 +99,7 @@ function currentCity(city) {
                 <h6>Feels like: ${(parseInt(tempCelFeels).toFixed(0))} °C</h6>
                 <h6>Humidity: ${data.main.humidity} %</h6>
                 <h6>Wind Speed: ${data.wind.speed} MPH</h6>
+                <h6>Pressue: ${pressure} kPa</h6>
             `
             updateUvIndex(latt, longg);
         }
