@@ -1,8 +1,45 @@
-#searchCity {
-    background-color: rgb(41, 127, 184);
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-.navbar {
-    background-color: rgb(41, 127, 184);
+
+#leftCol {
+    background-color: lightgray;
+    padding: 30px;
+    height: 100vh;
 }
 
+.row {
+    margin: 0;
+}
+
+
+form {
+    margin-bottom: 30px;
+}
+
+#currentWeather {
+    margin-top: 50px;
+}
+
+#temp {
+    color: orange;
+}
+
+#forecastBox {
+    margin-top: 50px;
+}
+
+.card {
+    padding: 10px;
+    background-color: lightblue;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    #leftCol {
+        height: 100%;
+    }
+}
